@@ -1,0 +1,16 @@
+{
+  "name": "mmm-sonos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "feather-icons": "^4.24.1",
+    "sonos": "^1.12.5",
+    "sonos-discovery": "git+https://github.com/jishi/node-sonos-discovery.git"
+  }
+}

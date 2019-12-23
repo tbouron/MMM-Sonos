@@ -1,0 +1,51 @@
+.sonos {
+    min-width: 300px;
+    max-width: 330px;
+}
+
+.ticker {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.progress {
+    height: 1px;
+    background: #fff;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.progress .indicator {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: -7px;
+    left: 0px;
+    background: #fff;
+}
+
+.metadata {
+    display: inline-flex;
+}
+
+.metadata > span {
+    display: flex;
+    justify-items: center;
+}
+.metadata > span:not(:last-child) {
+    margin-right: 0.5em;
+}
+
+.feather {
+    width: 1.2em;
+    height: 1.2em;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
