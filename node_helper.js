@@ -56,6 +56,8 @@ module.exports = NodeHelper.create({
             }
 
             this.groups = groups;
+        }).catch(error => {
+            console.error(`Failed to retrieve Sonos groups: ${error.message}`);
         });
     },
 
