@@ -2,7 +2,6 @@ Module.register('MMM-Sonos', {
     defaults: {
         animationSpeed: 1000,
         showAlbum: true,
-        showProgress: true,
         showMetadata: true
     },
 
@@ -93,19 +92,14 @@ Module.register('MMM-Sonos', {
                 track.innerHTML  = `<strong class="bright ticker">${item.track.title}</strong>`;
                 container.append(track);
 
+                const artist = document.createElement('div');
+                artist.className = 'artist small';
+                let artistHtml = `<span class="bright">${item.track.artist}</span>`;
                 if (this.config.showAlbum) {
-                    const album = document.createElement('div');
-                    album.className = 'album small';
-                    album.innerHTML = `<span class="ticker"><span class="bright">${item.track.artist}</span>&nbsp;○&nbsp;${item.track.album}</span>`;
-                    container.append(album);
+                    artistHtml += `&nbsp;○&nbsp;${item.track.album}`;
                 }
-
-                // if (this.config.showProgress) {
-                //     const progress = document.createElement('div');
-                //     progress.className = 'progress';
-                //     progress.innerHTML = `<div class="indicator" style="left: calc(${item.track.position * 100 / item.track.duration}% - 7px)"></div>`;
-                //     container.append(progress);
-                // }
+                artist.innerHTML += `<span class="ticker">${artistHtml}</span>`;
+                container.append(artist);
 
                 if (this.config.showMetadata) {
                     let volume;

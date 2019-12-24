@@ -10,24 +10,6 @@
     overflow: hidden;
 }
 
-.progress {
-    height: 1px;
-    background: #fff;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.progress .indicator {
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: -7px;
-    left: 0px;
-    background: #fff;
-}
-
 .metadata {
     display: inline-flex;
 }

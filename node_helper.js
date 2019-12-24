@@ -31,7 +31,7 @@ module.exports = NodeHelper.create({
         }).then(groups => {
             const currentGroupIds = this.groups.map(group => group.ID);
 
-            // For the first run, always set the groups (send the "SET_SONOS_GROUP" event
+            // For the first run, always set the groups (send the "SET_SONOS_GROUP" event)
             if (init) {
                 this.setGroups(groups);
             }

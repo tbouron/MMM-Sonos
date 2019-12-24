@@ -1,13 +1,13 @@
 {
-  "name": "mmm-sonos",
+  "name": "MMM-Sonos",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "MagicMirror module that displays playing tracks on your Sonos network",
+  "main": "MMM-Sonos.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "Apache-2.0",
+  "author": "Thomas Bouron <tbouron@gmail.com>",
+  "license": "Apache 2.0",
   "dependencies": {
     "feather-icons": "^4.24.1",
     "sonos": "^1.12.5",
