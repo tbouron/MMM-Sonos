@@ -72,14 +72,16 @@ Module.register('MMM-Sonos', {
     },
 
     getHeader: function() {
-        if (this.config.headers && Object.values(this.items).some(item => item.state === 'playing' && item.track)) {
-            return this.config.headers;
-        } else {
-            return '';
+        if (this.data.header && Object.values(this.items).some(item => item.state === 'playing' && item.track)) {
+            return this.data.header;
         }
     },
 
     getDom: function () {
+        if (Object.values(this.items).length === 0) {
+            return document.createElement('div');
+        }
+
         const container = document.createElement('div');
         container.className = 'sonos light';
         container.append(...Object.values(this.items)
