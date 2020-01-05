@@ -97,7 +97,7 @@ Module.register('MMM-Sonos', {
                 const artist = document.createElement('div');
                 artist.className = 'artist small';
                 let artistHtml = `<span class="bright">${item.track.artist}</span>`;
-                if (this.config.showAlbum) {
+                if (this.config.showAlbum && item.track.album) {
                     artistHtml += `&nbsp;○&nbsp;${item.track.album}`;
                 }
                 artist.innerHTML += `<span class="ticker">${artistHtml}</span>`;
