@@ -118,7 +118,7 @@ Module.register('MMM-Sonos', {
                         '&nbsp;' +
                         `<span>${volume}</span>` +
                         '&nbsp;' +
-                        `<span>${this.getIcon('activity', 'dimmed')}&nbsp;<span>${Math.floor(item.track.duration / 60)}:${Math.ceil(item.track.duration % 60)}</span></span>`;
+                        `<span>${this.getIcon('activity', 'dimmed')}&nbsp;<span>${Math.floor(item.track.duration / 60)}:${Math.ceil(item.track.duration % 60).toString().padStart(2, '0')}</span></span>`;
                     container.append(metadata);
                 }
 
