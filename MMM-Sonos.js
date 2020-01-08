@@ -1,6 +1,7 @@
 Module.register('MMM-Sonos', {
     defaults: {
         animationSpeed: 1000,
+        showArtist: true,
         showAlbum: true,
         showMetadata: true
     },
@@ -94,14 +95,19 @@ Module.register('MMM-Sonos', {
                 track.innerHTML  = `<strong class="bright ticker">${item.track.title}</strong>`;
                 container.append(track);
 
-                const artist = document.createElement('div');
-                artist.className = 'artist small';
-                let artistHtml = `<span class="bright">${item.track.artist}</span>`;
-                if (this.config.showAlbum && item.track.album) {
-                    artistHtml += `&nbsp;○&nbsp;${item.track.album}`;
+                const artist = [];
+                if (this.config.showArtist && item.track.artist) {
+                    artist.push(`<span class="bright">${item.track.artist}</span>`);
                 }
-                artist.innerHTML += `<span class="ticker">${artistHtml}</span>`;
-                container.append(artist);
+                if (this.config.showAlbum && item.track.album) {
+                    artist.push(`${item.track.album}`);
+                }
+                if (artist.length > 0) {
+                    const artistElement = document.createElement('div');
+                    artistElement.className = 'artist small';
+                    artistElement.innerHTML = artist.join('&nbsp;○&nbsp;');
+                    container.append(artistElement);
+                }
 
                 if (this.config.showMetadata) {
                     let volume;
