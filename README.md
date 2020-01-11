@@ -14,6 +14,7 @@ Clone this module into your MagicMirror's `modules` directory and install depend
 ```sh
 cd modules
 git clone https://github.com/tbouron/MMM-Sonos
+cd MMM-Sonos
 npm i
 ```
 
