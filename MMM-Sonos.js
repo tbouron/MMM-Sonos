@@ -23,7 +23,6 @@ Module.register('MMM-Sonos', {
 
     socketNotificationReceived: function (id, payload) {
         Log.log(`Notification received: ${id}`, payload);
-        let currentItem;
 
         switch (id) {
             case 'SET_SONOS_GROUPS':
@@ -31,40 +30,44 @@ Module.register('MMM-Sonos', {
                 this.updateDom(this.config.animationSpeed);
                 break;
             case 'SET_SONOS_CURRENT_TRACK':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    track: payload.track,
-                };
-                this.updateDom(this.config.animationSpeed);
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        track: payload.track,
+                    };
+                    this.updateDom(this.config.animationSpeed);
+                }
                 break;
             case 'SET_SONOS_VOLUME':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    volume: payload.volume
-                };
-                this.updateDom();
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        volume: payload.volume
+                    };
+                    this.updateDom();
+                }
                 break;
             case 'SET_SONOS_MUTE':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    isMuted: payload.isMuted
-                };
-                this.updateDom();
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        isMuted: payload.isMuted
+                    };
+                    this.updateDom();
+                }
                 break;
             case 'SET_SONOS_PLAY_STATE':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    state: payload.state
-                };
-                this.updateDom(this.config.animationSpeed);
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        state: payload.state
+                    };
+                    this.updateDom(this.config.animationSpeed);
+                }
                 break;
             default:
                 Log.info(`Notification with ID "${id}" unsupported. Ignoring...`);
