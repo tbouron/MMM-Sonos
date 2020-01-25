@@ -68,7 +68,7 @@ module.exports = NodeHelper.create({
 
     setGroups(groups) {
         Promise.all(groups.map(group => {
-            const sonos = new Sonos(group.host);
+            const sonos = group.CoordinatorDevice();
             return Promise.all([
                 sonos.currentTrack(),
                 sonos.getCurrentState(),
@@ -98,7 +98,7 @@ module.exports = NodeHelper.create({
         groups.forEach(group => {
             console.log(`Registering listeners for group "${group.Name}" (host "${group.host}")`);
 
-            const sonos = new Sonos(group.host);
+            const sonos = group.CoordinatorDevice();
 
             sonos.on('Mute', isMuted => {
                 console.log('This speaker is %s.', isMuted ? 'muted' : 'unmuted')
