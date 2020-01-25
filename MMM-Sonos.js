@@ -1,6 +1,7 @@
 Module.register('MMM-Sonos', {
     defaults: {
         animationSpeed: 1000,
+        showFullGroupName: false,
         showArtist: true,
         showAlbum: true,
         showMetadata: true
@@ -23,7 +24,6 @@ Module.register('MMM-Sonos', {
 
     socketNotificationReceived: function (id, payload) {
         Log.log(`Notification received: ${id}`, payload);
-        let currentItem;
 
         switch (id) {
             case 'SET_SONOS_GROUPS':
@@ -31,40 +31,44 @@ Module.register('MMM-Sonos', {
                 this.updateDom(this.config.animationSpeed);
                 break;
             case 'SET_SONOS_CURRENT_TRACK':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    track: payload.track,
-                };
-                this.updateDom(this.config.animationSpeed);
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        track: payload.track,
+                    };
+                    this.updateDom(this.config.animationSpeed);
+                }
                 break;
             case 'SET_SONOS_VOLUME':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    volume: payload.volume
-                };
-                this.updateDom();
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        volume: payload.volume
+                    };
+                    this.updateDom();
+                }
                 break;
             case 'SET_SONOS_MUTE':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    isMuted: payload.isMuted
-                };
-                this.updateDom();
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        isMuted: payload.isMuted
+                    };
+                    this.updateDom();
+                }
                 break;
             case 'SET_SONOS_PLAY_STATE':
-                currentItem = this.items.hasOwnProperty(payload.group.ID) ? this.items[payload.group.ID] : {};
-                this.items[payload.group.ID] = {
-                    ...currentItem,
-                    group: payload.group,
-                    state: payload.state
-                };
-                this.updateDom(this.config.animationSpeed);
+                if (this.items.hasOwnProperty(payload.group.ID)) {
+                    this.items[payload.group.ID] = {
+                        ...this.items[payload.group.ID],
+                        group: payload.group,
+                        state: payload.state
+                    };
+                    this.updateDom(this.config.animationSpeed);
+                }
                 break;
             default:
                 Log.info(`Notification with ID "${id}" unsupported. Ignoring...`);
@@ -117,10 +121,14 @@ Module.register('MMM-Sonos', {
                         volume = `${this.getIcon(item.volume < 50 ? 'volume-1' : 'volume-2', 'dimmed')}&nbsp;<span>${item.volume}</span>`;
                     }
 
+                    const groupName = this.config.showFullGroupName
+                        ? item.group.ZoneGroupMember.map(member => member.ZoneName).join(' + ')
+                        : item.group.Name;
+
                     const metadata = document.createElement('div');
                     metadata.className = 'metadata small normal';
                     metadata.innerHTML =
-                        `<span>${this.getIcon('speaker', 'dimmed')}&nbsp;<span>${item.group.Name}</span></span>` +
+                        `<span>${this.getIcon('speaker', 'dimmed')}&nbsp;<span class="group-name ticker">${groupName}</span></span>` +
                         '&nbsp;' +
                         `<span>${volume}</span>` +
                         '&nbsp;' +

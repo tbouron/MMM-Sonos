@@ -12,13 +12,15 @@
 .metadata {
     display: inline-flex;
 }
-
 .metadata > span {
     display: flex;
     justify-items: center;
 }
 .metadata > span:not(:last-child) {
     margin-right: 0.5em;
+}
+.metadata .group-name {
+    max-width: 150px;
 }
 
 .feather {
