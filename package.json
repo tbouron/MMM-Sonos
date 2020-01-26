@@ -2,15 +2,19 @@
   "name": "MMM-Sonos",
   "version": "1.2.0",
   "description": "MagicMirror module that displays playing tracks on your Sonos network",
-  "main": "MMM-Sonos.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Thomas Bouron <tbouron@gmail.com>",
   "license": "Apache 2.0",
+  "homepage": "https://github.com/tbouron/MMM-Sonos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tbouron/MMM-Sonos.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tbouron/MMM-Sonos/issues"
+  },
+  "main": "MMM-Sonos.js",
   "dependencies": {
     "feather-icons": "^4.24.1",
-    "sonos": "^1.12.5",
-    "sonos-discovery": "git+https://github.com/jishi/node-sonos-discovery.git"
+    "sonos": "^1.12.5"
   }
 }

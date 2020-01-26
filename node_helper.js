@@ -1,5 +1,5 @@
 const NodeHelper = require('node_helper');
-const {Sonos, AsyncDeviceDiscovery, Listener: listener} = require('sonos');
+const {AsyncDeviceDiscovery, Listener: listener} = require('sonos');
 
 module.exports = NodeHelper.create({
 
