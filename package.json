@@ -1,9 +1,13 @@
 {
   "name": "MMM-Sonos",
   "version": "1.2.0",
-  "description": "MagicMirror module that displays playing tracks on your Sonos network",
+  "description": "MagicMirror² module that displays playing tracks on your Sonos network.",
   "author": "Thomas Bouron <tbouron@gmail.com>",
-  "license": "Apache 2.0",
+  "keywords": [
+    "sonos",
+    "music"
+  ],
+  "license": "Apache-2.0",
   "homepage": "https://github.com/tbouron/MMM-Sonos",
   "repository": {
     "type": "git",
