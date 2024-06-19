@@ -19,6 +19,6 @@
   "main": "MMM-Sonos.js",
   "dependencies": {
     "feather-icons": "^4.24.1",
-    "sonos": "^1.12.5"
+    "sonos": "^1.14.1"
   }
 }
