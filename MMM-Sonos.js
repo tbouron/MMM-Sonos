@@ -4,21 +4,26 @@ Module.register('MMM-Sonos', {
         showFullGroupName: false,
         showArtist: true,
         showAlbum: true,
-        showMetadata: true
+        showMetadata: true,
+        listenWithPolling: false,
+        pollingTimeout: 5000,
     },
 
     items: {},
 
-    start: function() {
+    start: function () {
         Log.log('Sonos frontend started');
-        this.sendSocketNotification('SONOS_START');
+        this.sendSocketNotification('SONOS_START', {
+            listenWithPolling: this.config.listenWithPolling,
+            pollingTime: this.config.pollingTimeout ?? 5000
+        });
     },
 
     getStyles: function () {
         return ['MMM-Sonos.css'];
     },
 
-    getScripts: function() {
+    getScripts: function () {
         return [this.file('node_modules/feather-icons/dist/feather.min.js')];
     },
 
@@ -76,7 +81,7 @@ Module.register('MMM-Sonos', {
         }
     },
 
-    getHeader: function() {
+    getHeader: function () {
         if (this.data.header && Object.values(this.items).some(item => item.state === 'playing' && item.track)) {
             return this.data.header;
         }
@@ -96,7 +101,7 @@ Module.register('MMM-Sonos', {
 
                 const track = document.createElement('div');
                 track.className = 'track';
-                track.innerHTML  = `<strong class="bright ticker">${item.track.title}</strong>`;
+                track.innerHTML = `<strong class="bright ticker">${item.track.title}</strong>`;
                 container.append(track);
 
                 const artist = [];
@@ -142,7 +147,7 @@ Module.register('MMM-Sonos', {
         return container;
     },
 
-    getIcon: function(iconId, classes) {
+    getIcon: function (iconId, classes) {
         return `<svg class="feather ${classes}"><use xlink:href="${this.file('node_modules/feather-icons/dist/feather-sprite.svg')}#${iconId}"/></svg>`;
     }
 });
